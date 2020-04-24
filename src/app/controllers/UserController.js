@@ -37,11 +37,11 @@ class UserController {
       return res.status(400).json({ error: "User not found!" });
     }
 
-    // if (id !== parseInt(req.userId)) {
-    //   return res
-    //     .status(400)
-    //     .json({ error: "You are not authorized to update this user" });
-    // }
+    if (id !== parseInt(req.userId)) {
+      return res
+        .status(400)
+        .json({ error: "You are not authorized to update this user" });
+    }
 
     let { name, username, oldPassword, password } = req.body;
 
@@ -68,11 +68,11 @@ class UserController {
     if (!user) {
       return res.status(400).json({ error: "User not found!" });
     }
-    // if (id !== parseInt(req.userId)) {
-    //   return res
-    //     .status(400)
-    //     .json({ error: "You are not authorized to update this user" });
-    // }
+    if (id !== parseInt(req.userId)) {
+      return res
+        .status(400)
+        .json({ error: "You are not authorized to update this user" });
+    }
 
     await user.destroy();
     return res.send();

@@ -53,11 +53,11 @@ class StudantController {
     if (!studant) {
       return res.status(400).json({ error: "Studant not found!" });
     }
-    // if (old_user_id !== parseInt(req.userId)) {
-    //   return res
-    //     .status(400)
-    //     .json({ error: "You are not authorized to update this studant" });
-    // }
+    if (old_user_id !== parseInt(req.userId)) {
+      return res
+        .status(400)
+        .json({ error: "You are not authorized to update this studant" });
+    }
 
     if (!(await User.findByPk(old_user_id))) {
       return res.status(400).json({ error: "User not found!" });
@@ -94,11 +94,11 @@ class StudantController {
       return res.status(400).json({ error: "Studant not found!" });
     }
 
-    // if (user_id !== parseInt(req.userId)) {
-    //   return res
-    //     .status(400)
-    //     .json({ error: "You are not authorized to delete this studant" });
-    // }
+    if (user_id !== parseInt(req.userId)) {
+      return res
+        .status(400)
+        .json({ error: "You are not authorized to delete this studant" });
+    }
 
     await studant.destroy();
     return res.send();

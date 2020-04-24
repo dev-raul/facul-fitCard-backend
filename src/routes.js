@@ -1,4 +1,6 @@
 import { Router } from "express";
+//middleware
+import authMiddlware from "./app/middlewares/auth";
 
 //controllers
 import UserController from "./app/controllers/UserController";
@@ -14,9 +16,11 @@ const routes = Router();
 
 routes.post("/session", SessionStore, SessionController.store);
 
-routes.get("/user", UserController.index);
 routes.post("/user", UserStore, UserController.store);
 
+routes.use(authMiddlware);
+
+routes.get("/user", UserController.index);
 routes.get("/user/:id", UserController.show);
 routes.put("/user/:id", UserUpdate, UserController.update);
 routes.delete("/user/:id", UserController.destroy);
