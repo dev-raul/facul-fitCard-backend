@@ -1,6 +1,7 @@
 import { Router } from "express";
 //middleware
 import authMiddlware from "./app/middlewares/auth";
+import checkPermissionMiddleware from "./app/middlewares/checkPermission";
 
 //controllers
 import UserController from "./app/controllers/UserController";
@@ -19,6 +20,9 @@ routes.post("/session", SessionStore, SessionController.store);
 routes.post("/user", UserStore, UserController.store);
 
 routes.use(authMiddlware);
+
+//Check if the actor is provider
+routes.use(checkPermissionMiddleware);
 
 routes.get("/user", UserController.index);
 routes.get("/user/:id", UserController.show);
