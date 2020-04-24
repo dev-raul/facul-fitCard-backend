@@ -3,12 +3,16 @@ import { Router } from "express";
 //controllers
 import UserController from "./app/controllers/UserController";
 import StudantController from "./app/controllers/StudantController";
+import SessionController from "./app/controllers/SessionController";
 
 //validators
 import { UserStore, UserUpdate } from "./app/validators/User";
 import { StudantStore, StudantUpdate } from "./app/validators/Studant";
+import { SessionStore } from "./app/validators/Session";
 
 const routes = Router();
+
+routes.post("/session", SessionStore, SessionController.store);
 
 routes.get("/user", UserController.index);
 routes.post("/user", UserStore, UserController.store);
