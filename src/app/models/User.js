@@ -32,7 +32,9 @@ class User extends Model {
     return jwt.sign({ id: this.id }, process.env.APP_SECRET);
   }
 
-  static associate(models) {}
+  static associate(models) {
+    this.hasMany(models.Studant, { foreignKey: "user_id", as: "studants" });
+  }
 }
 
 export default User;

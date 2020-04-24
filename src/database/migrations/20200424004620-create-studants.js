@@ -9,8 +9,8 @@ module.exports = {
       */
     return queryInterface.createTable("studants", {
       id: {
-        type: Sequelize.STRING,
-        unique: true,
+        type: Sequelize.INTEGER,
+        autoIncrement: true,
         primaryKey: true,
         allowNull: false,
       },
@@ -23,6 +23,11 @@ module.exports = {
         },
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
+      },
+      id_hash: {
+        type: Sequelize.STRING,
+        allowNull: false,
+        unique: true,
       },
       name: {
         type: Sequelize.STRING,
