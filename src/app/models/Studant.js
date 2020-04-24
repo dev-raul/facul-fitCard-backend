@@ -14,7 +14,7 @@ class Studant extends Model {
     return this;
   }
   generateToken() {
-    return jwt.sign({ id: this.id }, process.env.APP_SECRET);
+    return jwt.sign({ id: this.id, provider: false }, process.env.APP_SECRET);
   }
 
   static associate(models) {

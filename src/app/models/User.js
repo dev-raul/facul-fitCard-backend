@@ -29,7 +29,7 @@ class User extends Model {
   }
 
   generateToken() {
-    return jwt.sign({ id: this.id }, process.env.APP_SECRET);
+    return jwt.sign({ id: this.id, provider: true }, process.env.APP_SECRET);
   }
 
   static associate(models) {
