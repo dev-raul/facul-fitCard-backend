@@ -11,7 +11,7 @@ class TrainingController {
       return res.status(400).json({ error: "User not have trainings!" });
     }
 
-    return res.json(user.trainings);
+    return res.json(user);
   }
 
   async store(req, res) {

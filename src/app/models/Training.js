@@ -13,6 +13,10 @@ class Training extends Model {
 
   static associate(models) {
     this.belongsTo(models.User, { foreignKey: "user_id", as: "users" });
+    this.hasMany(models.ItemTraining, {
+      foreignKey: "training_id",
+      as: "item_trainings",
+    });
   }
 }
 

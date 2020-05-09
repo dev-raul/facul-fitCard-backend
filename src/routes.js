@@ -8,12 +8,17 @@ import UserController from "./app/controllers/UserController";
 import StudantController from "./app/controllers/StudantController";
 import SessionController from "./app/controllers/SessionController";
 import TrainingController from "./app/controllers/TrainingController";
+import ItemTrainingController from "./app/controllers/ItemTrainingController";
 
 //validators
 import { UserStore, UserUpdate } from "./app/validators/User";
 import { StudantStore, StudantUpdate } from "./app/validators/Studant";
 import { SessionStore } from "./app/validators/Session";
 import { TrainingStore, TrainingUpdate } from "./app/validators/Training";
+import {
+  ItemTrainerStore,
+  ItemTrainerUpdate,
+} from "./app/validators/ItemTraining";
 
 const routes = Router();
 
@@ -22,6 +27,8 @@ routes.post("/session", SessionStore, SessionController.store);
 routes.post("/user", UserStore, UserController.store);
 
 routes.use(authMiddlware);
+
+routes.get("/training/:training_id/item", ItemTrainingController.index);
 
 //Check if the actor is provider
 routes.use(checkPermissionMiddleware);
@@ -48,5 +55,20 @@ routes.put(
   TrainingController.update
 );
 routes.delete("/user/:user_id/training/:id", TrainingController.destroy);
+
+routes.post(
+  "/training/:training_id/item",
+  ItemTrainerStore,
+  ItemTrainingController.store
+);
+routes.put(
+  "/training/:training_id/item/:id",
+  ItemTrainerUpdate,
+  ItemTrainingController.update
+);
+routes.delete(
+  "/training/:training_id/item/:id",
+  ItemTrainingController.destroy
+);
 
 export default routes;
