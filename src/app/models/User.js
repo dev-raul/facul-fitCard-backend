@@ -34,6 +34,7 @@ class User extends Model {
 
   static associate(models) {
     this.hasMany(models.Studant, { foreignKey: "user_id", as: "studants" });
+    this.hasMany(models.Training, { foreignKey: "user_id", as: "trainings" });
   }
 }
 

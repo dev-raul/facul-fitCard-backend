@@ -7,11 +7,13 @@ import checkPermissionMiddleware from "./app/middlewares/checkPermission";
 import UserController from "./app/controllers/UserController";
 import StudantController from "./app/controllers/StudantController";
 import SessionController from "./app/controllers/SessionController";
+import TrainingController from "./app/controllers/TrainingController";
 
 //validators
 import { UserStore, UserUpdate } from "./app/validators/User";
 import { StudantStore, StudantUpdate } from "./app/validators/Studant";
 import { SessionStore } from "./app/validators/Session";
+import { TrainingStore, TrainingUpdate } from "./app/validators/Training";
 
 const routes = Router();
 
@@ -37,5 +39,14 @@ routes.put(
   StudantController.update
 );
 routes.delete("/user/:user_id/studant/:id", StudantController.destroy);
+
+routes.get("/user/:user_id/training", TrainingController.index);
+routes.post("/user/:user_id/training", TrainingStore, TrainingController.store);
+routes.put(
+  "/user/:user_id/training/:id",
+  TrainingUpdate,
+  TrainingController.update
+);
+routes.delete("/user/:user_id/training/:id", TrainingController.destroy);
 
 export default routes;
