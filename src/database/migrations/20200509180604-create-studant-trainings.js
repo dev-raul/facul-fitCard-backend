@@ -7,42 +7,36 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
       Example:
       */
-    return queryInterface.createTable("item_trainings", {
+    return queryInterface.createTable("studant_trainings", {
       id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         primaryKey: true,
         autoIncrement: true,
+        allowNull: false,
       },
       training_id: {
         type: Sequelize.INTEGER,
-        allowNull: false,
         references: {
           model: "trainings",
           key: "id",
         },
+        allowNull: false,
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
       },
-      instrument: {
-        type: Sequelize.STRING,
-        allowNull: false,
-      },
-      series: {
+      studant_id: {
         type: Sequelize.INTEGER,
+        references: {
+          model: "studants",
+          key: "id",
+        },
         allowNull: false,
+        onDelete: "CASCADE",
+        onUpdate: "CASCADE",
       },
-      repeat: {
-        type: Sequelize.INTEGER,
+      schedule: {
+        type: Sequelize.DATE,
         allowNull: false,
-      },
-      load: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-      },
-      observation: {
-        type: Sequelize.TEXT,
-        allowNull: true,
       },
       created_at: {
         type: Sequelize.DATE,
@@ -61,6 +55,6 @@ module.exports = {
       Return a promise to correctly handle asynchronicity.
       Example:
       */
-    return queryInterface.dropTable("item_trainings");
+    return queryInterface.dropTable("studant_trainings");
   },
 };

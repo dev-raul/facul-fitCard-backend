@@ -11,7 +11,7 @@ class ItemTrainingController {
         {
           model: ItemTraining,
           as: "item_trainings",
-          order: [["number", "ASC"]],
+          order: [["createdAt", "ASC"]],
         },
       ],
     });
@@ -19,7 +19,7 @@ class ItemTrainingController {
     return res.json(traning);
   }
   async store(req, res) {
-    const { number, instrument, series, repeat, load, observation } = req.body;
+    const { instrument, series, repeat, load, observation } = req.body;
     const training_id = parseInt(req.params.training_id);
 
     if (!(await Training.findByPk(training_id))) {
@@ -28,7 +28,6 @@ class ItemTrainingController {
 
     const itemTraning = await ItemTraining.create({
       training_id,
-      number,
       instrument,
       series,
       repeat,
@@ -40,7 +39,7 @@ class ItemTrainingController {
   }
 
   async update(req, res) {
-    const { number, instrument, series, repeat, load, observation } = req.body;
+    const { instrument, series, repeat, load, observation } = req.body;
     const training_id = parseInt(req.params.training_id);
     const id = parseInt(req.params.id);
 
@@ -58,7 +57,6 @@ class ItemTrainingController {
     }
 
     await itemTraining.update({
-      number,
       instrument,
       series,
       repeat,

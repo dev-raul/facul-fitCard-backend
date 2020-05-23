@@ -3,20 +3,11 @@ import * as Yup from "yup";
 export const ItemTrainerStore = async (req, res, next) => {
   try {
     const schema = Yup.object().shape({
-      number: Yup.number()
-        .positive()
-        .required(),
       instrument: Yup.string().required(),
-      series: Yup.number()
-        .positive()
-        .required(),
-      repeat: Yup.number()
-        .positive()
-        .required(),
-      load: Yup.number()
-        .positive()
-        .required(),
-      observation: Yup.string()
+      series: Yup.number().positive().required(),
+      repeat: Yup.number().positive().required(),
+      load: Yup.number().positive().required(),
+      observation: Yup.string(),
     });
 
     await schema.validate(req.body, { abortEarly: false });
@@ -30,8 +21,6 @@ export const ItemTrainerStore = async (req, res, next) => {
 export const ItemTrainerUpdate = async (req, res, next) => {
   try {
     const schema = Yup.object().shape({
-      number: Yup.number().positive(),
-
       instrument: Yup.string(),
       series: Yup.number().positive(),
 
@@ -39,7 +28,7 @@ export const ItemTrainerUpdate = async (req, res, next) => {
 
       load: Yup.number().positive(),
 
-      observation: Yup.string()
+      observation: Yup.string(),
     });
 
     await schema.validate(req.body, { abortEarly: false });

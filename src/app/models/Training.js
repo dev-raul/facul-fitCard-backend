@@ -17,6 +17,11 @@ class Training extends Model {
       foreignKey: "training_id",
       as: "item_trainings",
     });
+    this.belongsToMany(models.Studant, {
+      foreignKey: "training_id",
+      through: models.StudantTraining,
+      as: "studants",
+    });
   }
 }
 
