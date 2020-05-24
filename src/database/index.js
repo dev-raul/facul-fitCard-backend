@@ -16,8 +16,15 @@ class Database {
     this.init();
   }
 
-  init() {
-    this.connection = new Sequelize(databaseConfig);
+  async init() {
+    if (process.env.NODE_DEV) {
+      this.connection = new Sequelize(databaseConfig);
+    } else {
+      const { url, ...rest } = databaseConfig;
+      this.connection = new Sequelize(url, {
+        ...rest,
+      });
+    }
 
     models
       .map((model) => model.init(this.connection))
