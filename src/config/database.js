@@ -1,5 +1,5 @@
 require("dotenv/config");
-if (process.env.NODE_ENV) {
+if (process.env.NODE_ENV === 'DEV') {
   module.exports = {
     dialect: "postgres",
     host: process.env.DB_HOST_DEV,

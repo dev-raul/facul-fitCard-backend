@@ -16,7 +16,7 @@ class Database {
     this.init();
   }
 
-  async init() {
+  init() {
     if (process.env.NODE_DEV === "DEV") {
       this.connection = new Sequelize(databaseConfig);
     } else {
