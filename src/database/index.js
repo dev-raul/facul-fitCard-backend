@@ -17,7 +17,7 @@ class Database {
   }
 
   async init() {
-    if (process.env.NODE_DEV) {
+    if (process.env.NODE_DEV === "DEV") {
       this.connection = new Sequelize(databaseConfig);
     } else {
       const { url, ...rest } = databaseConfig;
