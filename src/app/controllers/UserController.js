@@ -43,10 +43,13 @@ class UserController {
         .json({ error: "You are not authorized to update this user" });
     }
 
-    let { name, username, oldPassword, password } = req.body;
+    let { name, username, oldPassword, password, confirmPassword } = req.body;
 
     if (username && (await User.findOne({ where: { username } }))) {
       return res.status(400).json({ error: "User already exist" });
+    }
+    if (password !== confirmPassword) {
+      return res.status(401).json({ error: "Different password" });
     }
 
     if (oldPassword && !(await user.checkPassword(oldPassword))) {

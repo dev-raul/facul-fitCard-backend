@@ -1,5 +1,5 @@
 import Sequelize from "sequelize";
-
+require("dotenv/config");
 import databaseConfig from "../config/database";
 
 //Colocar todos os models
@@ -17,7 +17,7 @@ class Database {
   }
 
   init() {
-    if (process.env.NODE_DEV === "DEV") {
+    if (process.env.NODE_ENV === "DEV") {
       this.connection = new Sequelize(databaseConfig);
     } else {
       const { url, ...rest } = databaseConfig;

@@ -11,7 +11,7 @@ export const StudantStore = async (req, res, next) => {
   } catch (err) {
     return res
       .status(400)
-      .json({ error: "Validator fails", message: err.inner });
+      .json({ message: "Validator fails", error: err.inner });
   }
 };
 export const StudantUpdate = async (req, res, next) => {
@@ -27,6 +27,6 @@ export const StudantUpdate = async (req, res, next) => {
   } catch (err) {
     return res
       .status(400)
-      .json({ error: "Validator fails", message: err.inner });
+      .json({ message: "Validator fails", error: err.inner });
   }
 };
